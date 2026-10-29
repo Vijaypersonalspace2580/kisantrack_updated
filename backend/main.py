@@ -42,7 +42,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://YOUR-KISAN-TRACK-FRONTEND.onrender.com"
+        "https://kisantrack-app.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
