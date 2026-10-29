@@ -37,6 +37,17 @@ class Payment(Base):
     __tablename__='payments'; id:Mapped[str]=mapped_column(String(64),primary_key=True); job_id:Mapped[Optional[str]]=mapped_column(String(64),nullable=True); phone:Mapped[str]=mapped_column(String(20),index=True); name:Mapped[str]=mapped_column(String(120)); amount:Mapped[float]=mapped_column(Float); mode:Mapped[str]=mapped_column(String(40)); reference:Mapped[str]=mapped_column(String(160),default=''); verified:Mapped[bool]=mapped_column(Boolean,default=False); created_at:Mapped[datetime]=mapped_column(DateTime,default=datetime.utcnow)
 Base.metadata.create_all(engine)
 app=FastAPI(title='KisanTrak API',version='1.0.0',description='Secure API starter for tractor work, customer and payment records')
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://YOUR-KISAN-TRACK-FRONTEND.onrender.com"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 origins=[x.strip() for x in os.getenv('CORS_ORIGINS','http://localhost:5500,http://127.0.0.1:5500').split(',') if x.strip()]
 app.add_middleware(CORSMiddleware,allow_origins=origins,allow_credentials=True,allow_methods=['GET','POST','PUT','DELETE','OPTIONS'],allow_headers=['Authorization','Content-Type'])
 def get_db():
