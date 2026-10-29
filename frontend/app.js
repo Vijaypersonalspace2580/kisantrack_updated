@@ -1,6 +1,6 @@
 'use strict';
 // Set this to your deployed FastAPI backend URL, e.g. https://kisantrak-api.onrender.com (no trailing slash).
-const API_BASE='';
+const API_BASE='https://kisantrack-api.onrender.com';
 let cloudToken=localStorage.getItem('kisantrak_cloud_token')||'';let cloudBusy=false;
 const $=id=>document.getElementById(id);const money=n=>'₹'+Math.round(Number(n)||0).toLocaleString('en-IN',{maximumFractionDigits:0});const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const DEFAULT_PRICES={'Rotavator':1000,'Trolley':0,'5-tyne cultivator':1000,'9-tyne cultivator':900,'Travelling':0,'Other':0};let authMode='login',admin=null,currentEdit=null,toastTimer,previousPage='dashboard',currentPage='dashboard';let db={customers:[],jobs:[],prices:{...DEFAULT_PRICES},payments:[],createdAt:new Date().toISOString()};
